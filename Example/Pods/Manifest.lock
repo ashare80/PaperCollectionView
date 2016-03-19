@@ -1,0 +1,17 @@
+PODS:
+  - PaperCollectionView (0.1.0):
+    - pop
+  - pop (1.0.9)
+
+DEPENDENCIES:
+  - PaperCollectionView (from `../`)
+
+EXTERNAL SOURCES:
+  PaperCollectionView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PaperCollectionView: be88a20553acdce4d9cc7cb4cc9b57b06ddf9623
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+
+COCOAPODS: 0.39.0

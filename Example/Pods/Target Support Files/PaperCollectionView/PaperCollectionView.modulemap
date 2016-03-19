@@ -1,0 +1,6 @@
+framework module PaperCollectionView {
+  umbrella header "PaperCollectionView-umbrella.h"
+
+  export *
+  module * { export * }
+}
