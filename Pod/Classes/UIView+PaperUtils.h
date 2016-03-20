@@ -1,5 +1,5 @@
 //
-//  UIView+FirstResponder.h
+//  UIView+PaperUtils.h
 //  TapShield
 //
 //  Created by Adam Share on 2/18/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (FirstResponder)
+@interface UIView (PaperUtils)
 
 - (UIView *)findFirstResponder;
 - (CGPoint)contentCenter;

@@ -7,7 +7,7 @@
 //
 
 #import "PaperCollectionView.h"
-#import "UIView+FirstResponder.h"
+#import "UIView+PaperUtils.h"
 
 @interface PaperCollectionView ()
 
@@ -34,7 +34,7 @@
 }
 
 - (void)setupView {
-    self.collectionViewController = [[RVTPaperCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    self.collectionViewController = [[PaperCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
     [self addSubview:self.collectionViewController.view];
 }
 
@@ -52,7 +52,7 @@
     [self.collectionViewController.view autoPinToSuperView];
 }
 
-- (void)setDelegate:(id<RVTPaperCollectionViewControllerDelegate>)delegate {
+- (void)setDelegate:(id<PaperCollectionViewControllerDelegate>)delegate {
     _delegate = delegate;
     _collectionViewController.delegate = delegate;
 }

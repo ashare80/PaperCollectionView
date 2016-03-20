@@ -1,14 +1,14 @@
 //
-//  UIView+FirstResponder.m
+//  UIView+PaperUtils.m
 //  TapShield
 //
 //  Created by Adam Share on 2/18/14.
 //  Copyright (c) 2014 TapShield, LLC. All rights reserved.
 //
 
-#import "UIView+FirstResponder.h"
+#import "UIView+PaperUtils.h"
 
-@implementation UIView (FirstResponder)
+@implementation UIView (PaperUtils)
 
 - (UIView *)findFirstResponder {
     if ([self isFirstResponder])

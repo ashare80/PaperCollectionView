@@ -1,21 +1,21 @@
 //
-//  RVTPaperCollectionViewController.m
+//  PaperCollectionViewController.m
 //  PaperScrollView
 //
 //  Created by Adam J Share on 4/29/15.
 //  Copyright (c) 2015 Adam J Share. All rights reserved.
 //
 
-#import "RVTPaperCollectionViewController.h"
+#import "PaperCollectionViewController.h"
 #import "PaperCell.h"
-#import "UIView+FirstResponder.h"
+#import "UIView+PaperUtils.h"
 #import <pop/POP.h>
 #import "PaperCollectionView.h"
 
 
 
 
-@interface RVTPaperCollectionViewController ()
+@interface PaperCollectionViewController ()
 
 //Pan
 
@@ -64,7 +64,7 @@
 
 @end
 
-@implementation RVTPaperCollectionViewController
+@implementation PaperCollectionViewController
 
 static NSString * const reuseIdentifier = @"PaperCell";
 

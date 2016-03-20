@@ -36,7 +36,7 @@
 		5161F69285C45540692B58D15DA81FA1 /* POPAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 120C28AC661B29A112065021B7770159 /* POPAnimation.mm */; };
 		51A77BA9B3ED08D7C9AD91FCBA453330 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 965136D6750EEF612E224DC7764AAC11 /* TransformationMatrix.cpp */; };
 		53874B3E5B77EEE3CC6D6BA76D10E55A /* POPPropertyAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = B1188971A4DEE28CCDDE8EF81FD609AE /* POPPropertyAnimationInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		558F4A01EBEB8B9872F9CCCA92D838A1 /* RVTPaperCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE0CA97C041FB92230267525F758EC /* RVTPaperCollectionViewController.m */; };
+		558F4A01EBEB8B9872F9CCCA92D838A1 /* PaperCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACE0CA97C041FB92230267525F758EC /* PaperCollectionViewController.m */; };
 		56054DD0F72E79EA24B2AC4A72197553 /* POPPropertyAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 234ED998636FC90364E3582ACD5DE413 /* POPPropertyAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56A29C75AB07E47A817FB275DB34B23E /* POPAnimationExtras.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8282526376108043AE7659813E24ACA /* POPAnimationExtras.mm */; };
 		5CD8E71D3850BA4032D4147CDFCF7D25 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12275F3C9EA534AAA9AEE0CF6019AF64 /* pop.framework */; };
@@ -54,7 +54,7 @@
 		89E9DD5CDEB61B407409856C25AADDE2 /* PaperCollectionView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90AC55D2DAFCE682C99162245C0990A7 /* PaperCollectionView.bundle */; };
 		8B14B4ACD83B337A9B2FAA612EF5F043 /* PaperCollectionView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F7421807EBD3011DBEF05F98BE52142 /* PaperCollectionView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B55A492325AAB08BC5E7C3F84709C79 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C87E947869A8AB65323AB1854712BF1 /* POPVector.mm */; };
-		9287ED78A404A91A368B796B4877A644 /* RVTPaperCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F96A30E72E82518618117808F715E7C /* RVTPaperCollectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9287ED78A404A91A368B796B4877A644 /* PaperCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F96A30E72E82518618117808F715E7C /* PaperCollectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		978A1E201A1BCC34CAD5C7406C3B2278 /* POPAnimatableProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = C0324414E50EEF7768EBDA890AC3FDC9 /* POPAnimatableProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		978E600387BAEED975E195EEEFFE9897 /* POPSpringAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 63DC08A04080C5358E1CCF24D5672FA8 /* POPSpringAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F0669561A232F159763EDA7545D221D /* POPAnimationTracerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = D4A6E57C6317C6FCF70E923B02BB54BA /* POPAnimationTracerInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -69,7 +69,7 @@
 		C527B0B81C9F0FAE00A5F277 /* PaperCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = C527B0B61C9F0FAE00A5F277 /* PaperCollectionView.h */; };
 		C527B0B91C9F0FAE00A5F277 /* PaperCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C527B0B71C9F0FAE00A5F277 /* PaperCollectionView.m */; };
 		CAD8A27A5C471346EC7340AC1CAD0B76 /* POPBasicAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 24335E909B3CC4AEAFEF47AD3809F451 /* POPBasicAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CEC3F0D5A63B6F4C19556F57F3EC7F80 /* UIView+FirstResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC945CC63C26AD2E9461A1B7FCC0CCF /* UIView+FirstResponder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CEC3F0D5A63B6F4C19556F57F3EC7F80 /* UIView+PaperUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FC945CC63C26AD2E9461A1B7FCC0CCF /* UIView+PaperUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D4F541786699059131641C53F9458C20 /* POPAnimationExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = A44D5B4E2FAE3B627783F9349B0E70CD /* POPAnimationExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D59477AFBD14DF075BA1EBAE2B931FD0 /* TransformationMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = A73151975379B4A095E7BAF7249288B5 /* TransformationMatrix.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		D7F9CA337E474652C90C75F1EECBDB96 /* POPLayerExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 21CBAF4A90B092462A8C1FF51FC92C76 /* POPLayerExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -82,7 +82,7 @@
 		ECF1028AB1F2891E71980753625F147D /* POPCustomAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 78F9734B03272106AB156A1C8B59969C /* POPCustomAnimation.mm */; };
 		EF06C6FD39815F13EBDD6DFF91BAED3F /* POPBasicAnimationInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FEE803AFA6C849303D023A4F96944AC /* POPBasicAnimationInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F7C1FF850014C42D97DDFF32CA51C445 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD41F83DDDEB65198B68E8301C9A384 /* Foundation.framework */; };
-		FB1E88E625F0086CB5078F1924C6F5A2 /* UIView+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = A319100A55F0F201C98D61D111621FC0 /* UIView+FirstResponder.m */; };
+		FB1E88E625F0086CB5078F1924C6F5A2 /* UIView+PaperUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A319100A55F0F201C98D61D111621FC0 /* UIView+PaperUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,7 +135,7 @@
 		07779FFE78D11FA20C881D08D4445808 /* PaperCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PaperCell.m; sourceTree = "<group>"; };
 		0B60B116D976829815198B5734B9C9B3 /* POPAnimationRuntime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationRuntime.h; path = pop/POPAnimationRuntime.h; sourceTree = "<group>"; };
 		0DE0E9E93C05AFCE12988A4014D0E7F0 /* pop-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "pop-dummy.m"; sourceTree = "<group>"; };
-		0F96A30E72E82518618117808F715E7C /* RVTPaperCollectionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RVTPaperCollectionViewController.h; sourceTree = "<group>"; };
+		0F96A30E72E82518618117808F715E7C /* PaperCollectionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PaperCollectionViewController.h; sourceTree = "<group>"; };
 		0FEE803AFA6C849303D023A4F96944AC /* POPBasicAnimationInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPBasicAnimationInternal.h; path = pop/POPBasicAnimationInternal.h; sourceTree = "<group>"; };
 		120C28AC661B29A112065021B7770159 /* POPAnimation.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimation.mm; path = pop/POPAnimation.mm; sourceTree = "<group>"; };
 		12275F3C9EA534AAA9AEE0CF6019AF64 /* pop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,13 +148,13 @@
 		2680F0E57F31AB5A4911263E3A9131A3 /* Pods-PaperCollectionView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PaperCollectionView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		282C75AA81A2497B8FDF891CDF6F430F /* POPVector.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPVector.h; path = pop/POPVector.h; sourceTree = "<group>"; };
 		2838D307C6548C65C10E0409533AF58D /* POPSpringSolver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPSpringSolver.h; path = pop/POPSpringSolver.h; sourceTree = "<group>"; };
-		2ACE0CA97C041FB92230267525F758EC /* RVTPaperCollectionViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RVTPaperCollectionViewController.m; sourceTree = "<group>"; };
+		2ACE0CA97C041FB92230267525F758EC /* PaperCollectionViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PaperCollectionViewController.m; sourceTree = "<group>"; };
 		2BE0E335F1EEF1B6165BDF545388711A /* POPLayerExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPLayerExtras.mm; path = pop/POPLayerExtras.mm; sourceTree = "<group>"; };
 		2D546FFAD72BBAD14DE080B0D19854BB /* POPAnimationEvent.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationEvent.mm; path = pop/POPAnimationEvent.mm; sourceTree = "<group>"; };
 		2DEC75876E9EAEB68D74034D6E49F6F0 /* Pods-PaperCollectionView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PaperCollectionView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2ED95A016F38950DC13C0B61B6DD5A9B /* Pods-PaperCollectionView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PaperCollectionView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		2F247DBD8203320402A1ED10227353C3 /* POPGeometry.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPGeometry.mm; path = pop/POPGeometry.mm; sourceTree = "<group>"; };
-		2FC945CC63C26AD2E9461A1B7FCC0CCF /* UIView+FirstResponder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+FirstResponder.h"; sourceTree = "<group>"; };
+		2FC945CC63C26AD2E9461A1B7FCC0CCF /* UIView+PaperUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+PaperUtils.h"; sourceTree = "<group>"; };
 		36250734EBB6399C5101778C7F41C8E0 /* Pods_PaperCollectionView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperCollectionView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7421807EBD3011DBEF05F98BE52142 /* PaperCollectionView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PaperCollectionView-umbrella.h"; sourceTree = "<group>"; };
 		418984DD82DC30F85A1E100006244C1C /* Pods-PaperCollectionView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PaperCollectionView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		996E24D5B0874FB0D0DCD82ED364B7D9 /* PaperCollectionView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PaperCollectionView-prefix.pch"; sourceTree = "<group>"; };
 		A0C3DCAC1EE40937C99C67915C27850E /* Pods_PaperCollectionView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperCollectionView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E1F577206E63B8E314F68B53D18F73 /* PaperCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PaperCell.h; sourceTree = "<group>"; };
-		A319100A55F0F201C98D61D111621FC0 /* UIView+FirstResponder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+FirstResponder.m"; sourceTree = "<group>"; };
+		A319100A55F0F201C98D61D111621FC0 /* UIView+PaperUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+PaperUtils.m"; sourceTree = "<group>"; };
 		A44D5B4E2FAE3B627783F9349B0E70CD /* POPAnimationExtras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = POPAnimationExtras.h; path = pop/POPAnimationExtras.h; sourceTree = "<group>"; };
 		A73151975379B4A095E7BAF7249288B5 /* TransformationMatrix.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TransformationMatrix.h; path = pop/WebCore/TransformationMatrix.h; sourceTree = "<group>"; };
 		A8282526376108043AE7659813E24ACA /* POPAnimationExtras.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = POPAnimationExtras.mm; path = pop/POPAnimationExtras.mm; sourceTree = "<group>"; };
@@ -493,12 +493,12 @@
 			children = (
 				A0E1F577206E63B8E314F68B53D18F73 /* PaperCell.h */,
 				07779FFE78D11FA20C881D08D4445808 /* PaperCell.m */,
-				0F96A30E72E82518618117808F715E7C /* RVTPaperCollectionViewController.h */,
-				2ACE0CA97C041FB92230267525F758EC /* RVTPaperCollectionViewController.m */,
+				0F96A30E72E82518618117808F715E7C /* PaperCollectionViewController.h */,
+				2ACE0CA97C041FB92230267525F758EC /* PaperCollectionViewController.m */,
 				592A73B8B732A7DEAE32C223BD902D46 /* UICollectionView+Utils.h */,
 				6D1F7FBC68F50DC848C6FB1BC9E55FA9 /* UICollectionView+Utils.m */,
-				2FC945CC63C26AD2E9461A1B7FCC0CCF /* UIView+FirstResponder.h */,
-				A319100A55F0F201C98D61D111621FC0 /* UIView+FirstResponder.m */,
+				2FC945CC63C26AD2E9461A1B7FCC0CCF /* UIView+PaperUtils.h */,
+				A319100A55F0F201C98D61D111621FC0 /* UIView+PaperUtils.m */,
 				C527B0B61C9F0FAE00A5F277 /* PaperCollectionView.h */,
 				C527B0B71C9F0FAE00A5F277 /* PaperCollectionView.m */,
 			);
@@ -522,10 +522,10 @@
 			files = (
 				8B14B4ACD83B337A9B2FAA612EF5F043 /* PaperCollectionView-umbrella.h in Headers */,
 				18DE81657D532AA0742C0540F18B9E85 /* PaperCell.h in Headers */,
-				9287ED78A404A91A368B796B4877A644 /* RVTPaperCollectionViewController.h in Headers */,
+				9287ED78A404A91A368B796B4877A644 /* PaperCollectionViewController.h in Headers */,
 				19B24877AB5D0E7FF50F83FF2193D674 /* UICollectionView+Utils.h in Headers */,
 				C527B0B81C9F0FAE00A5F277 /* PaperCollectionView.h in Headers */,
-				CEC3F0D5A63B6F4C19556F57F3EC7F80 /* UIView+FirstResponder.h in Headers */,
+				CEC3F0D5A63B6F4C19556F57F3EC7F80 /* UIView+PaperUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,9 +737,9 @@
 				1723455DCA6AA13A8547D9A088CDC0D2 /* PaperCollectionView-dummy.m in Sources */,
 				C527B0B91C9F0FAE00A5F277 /* PaperCollectionView.m in Sources */,
 				AC0703C46AF1D6513623A13451AB5445 /* PaperCell.m in Sources */,
-				558F4A01EBEB8B9872F9CCCA92D838A1 /* RVTPaperCollectionViewController.m in Sources */,
+				558F4A01EBEB8B9872F9CCCA92D838A1 /* PaperCollectionViewController.m in Sources */,
 				1F2C2AD37BD137F1FA2EED9A0C436DFE /* UICollectionView+Utils.m in Sources */,
-				FB1E88E625F0086CB5078F1924C6F5A2 /* UIView+FirstResponder.m in Sources */,
+				FB1E88E625F0086CB5078F1924C6F5A2 /* UIView+PaperUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

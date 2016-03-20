@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RVTPaperCollectionViewController.h"
+#import "PaperCollectionViewController.h"
 
 
 @interface PaperCollectionView : UIView
 
-@property (strong, nonatomic) RVTPaperCollectionViewController *collectionViewController;
-@property (weak, nonatomic) id<RVTPaperCollectionViewControllerDelegate> delegate;
+@property (strong, nonatomic) PaperCollectionViewController *collectionViewController;
+@property (weak, nonatomic) id<PaperCollectionViewControllerDelegate> delegate;
 
 @end
