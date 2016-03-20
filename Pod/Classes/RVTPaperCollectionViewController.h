@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PaperCell.h"
 
 @class RVTPaperCollectionViewController;
 
@@ -19,6 +19,8 @@
 
 - (void)paperCollectionViewControllerWillMinimize:(RVTPaperCollectionViewController *)controller;
 - (void)paperCollectionViewControllerWillMaximize:(RVTPaperCollectionViewController *)controller;
+
+- (void)didDequeuePaperCellForReuse:(PaperCell *)cell;
 
 @end
 
@@ -41,12 +43,5 @@
 
 - (void)minimizeCell;
 - (void)scrollToAndMaximizeIndexPath:(NSIndexPath *)indexPath;
-
-@end
-
-
-@interface PaperCollectionView : UIView
-
-@property (strong, nonatomic) RVTPaperCollectionViewController *collectionViewController;
 
 @end

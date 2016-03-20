@@ -16,12 +16,27 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iKc-N8-M2L" customClass="PaperCollectionView">
+                                <rect key="frame" x="0.0" y="268" width="320" height="300"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="4dk-eT-jiu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="iKc-N8-M2L" secondAttribute="bottom" id="Kja-eC-sFu"/>
+                            <constraint firstAttribute="trailing" secondItem="iKc-N8-M2L" secondAttribute="trailing" id="Pas-N3-S7j"/>
+                            <constraint firstItem="iKc-N8-M2L" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="dOh-rx-Qht"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="147" y="336"/>
         </scene>
     </scenes>
 </document>

@@ -1,5 +1,5 @@
 //
-//  RVTControllerCollectionViewCell.h
+//  PaperCell.h
 //  PaperScrollView
 //
 //  Created by Adam J Share on 5/1/15.
@@ -15,7 +15,7 @@
 
 @end
 
-@interface RVTControllerCollectionViewCell : UICollectionViewCell
+@interface PaperCell : UICollectionViewCell
 
 @property (weak, nonatomic) id<PaperCellChangeDelegate> delegate;
 @property (strong, nonatomic) UIView *scaledView;

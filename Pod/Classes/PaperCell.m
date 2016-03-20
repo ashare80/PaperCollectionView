@@ -1,18 +1,18 @@
 //
-//  RVTControllerCollectionViewCell.m
+//  PaperCell.m
 //  PaperScrollView
 //
 //  Created by Adam J Share on 5/1/15.
 //  Copyright (c) 2015 Adam J Share. All rights reserved.
 //
 
-#import "RVTControllerCollectionViewCell.h"
+#import "PaperCell.h"
 
-@interface RVTControllerCollectionViewCell ()
+@interface PaperCell ()
 
 @end
 
-@implementation RVTControllerCollectionViewCell
+@implementation PaperCell
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {

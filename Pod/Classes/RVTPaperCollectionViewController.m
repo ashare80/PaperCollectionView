@@ -7,54 +7,11 @@
 //
 
 #import "RVTPaperCollectionViewController.h"
-#import "RVTControllerCollectionViewCell.h"
+#import "PaperCell.h"
 #import "UIView+FirstResponder.h"
 #import <pop/POP.h>
+#import "PaperCollectionView.h"
 
-@interface PaperCollectionView ()
-
-@end
-
-@implementation PaperCollectionView
-
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setupView];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupView];
-    }
-    return self;
-}
-
-- (void)setupView {
-    self.collectionViewController = [[RVTPaperCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-    [self addSubview:self.collectionViewController.view];
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    for (NSLayoutConstraint *con in self.constraints) {
-        if (con.firstAttribute == NSLayoutAttributeHeight) {
-            self.collectionViewController.shouldLayout = NO;
-            self.collectionViewController.heightConstraint = con;
-            self.collectionViewController.shouldLayout = YES;
-        }
-    }
-    self.collectionViewController.view.frame = self.bounds;
-    [self.collectionViewController.view autoPinToSuperView];
-}
-
-@end
 
 
 
@@ -109,7 +66,7 @@
 
 @implementation RVTPaperCollectionViewController
 
-static NSString * const reuseIdentifier = @"RVTControllerCollectionViewCell";
+static NSString * const reuseIdentifier = @"PaperCell";
 
 - (void)viewDidLoad {
     
@@ -117,7 +74,7 @@ static NSString * const reuseIdentifier = @"RVTControllerCollectionViewCell";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    [self.collectionView registerClass:[RVTControllerCollectionViewCell class]forCellWithReuseIdentifier:reuseIdentifier];
+    [self.collectionView registerClass:[PaperCell class]forCellWithReuseIdentifier:reuseIdentifier];
     ((UICollectionViewFlowLayout *)self.collectionViewLayout).scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     _paperPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
@@ -129,8 +86,8 @@ static NSString * const reuseIdentifier = @"RVTControllerCollectionViewCell";
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.collectionView.layer.shadowOffset = CGSizeMake(0, 3);
-    self.collectionView.layer.shadowOpacity = 0.5;
-    self.collectionView.layer.shadowRadius = 3;
+    self.collectionView.layer.shadowOpacity = 0.2;
+    self.collectionView.layer.shadowRadius = 2;
 }
 
 - (void)didReceiveMemoryWarning {

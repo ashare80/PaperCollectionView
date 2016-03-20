@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-#import "RVTControllerCollectionViewCell.h"
+#import "PaperCell.h"
 #import "RVTPaperCollectionViewController.h"
 #import "UICollectionView+Utils.h"
 #import "UIView+FirstResponder.h"
