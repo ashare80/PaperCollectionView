@@ -1,14 +1,14 @@
 //
-//  UICollectionView+Utils.m
+//  UICollectionView+PaperUtils.m
 //  Field Tech
 //
 //  Created by Adam J Share on 7/9/15.
 //  Copyright (c) 2015 Ravti. All rights reserved.
 //
 
-#import "UICollectionView+Utils.h"
+#import "UICollectionView+PaperUtils.h"
 
-@implementation UICollectionView (Utils)
+@implementation UICollectionView (PaperUtils)
 
 - (NSIndexPath *)lastIndexPath {
     

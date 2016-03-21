@@ -34,6 +34,7 @@
 }
 
 - (void)setupView {
+    self.clipsToBounds = NO;
     self.collectionViewController = [[PaperCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
     [self addSubview:self.collectionViewController.view];
 }

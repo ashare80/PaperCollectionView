@@ -1,5 +1,5 @@
 //
-//  UICollectionView+Utils.h
+//  UICollectionView+PaperUtils.h
 //  Field Tech
 //
 //  Created by Adam J Share on 7/9/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UICollectionView (Utils)
+@interface UICollectionView (PaperUtils)
 
 @property (readonly, nonatomic) NSIndexPath *lastIndexPath;
 

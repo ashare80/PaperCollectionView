@@ -17,39 +17,32 @@
 
 @interface PaperCollectionViewController ()
 
-//Pan
+@property (assign, nonatomic) BOOL paperPagingEnabled;
 
+//Pan
 @property (strong, nonatomic) UIPanGestureRecognizer *paperPanGestureRecognizer;
 
 @property (strong, nonatomic) NSIndexPath *panBeganIndexPath;
-
 @property (readonly, nonatomic) NSIndexPath *pagingIndexPath;
 
 @property (assign, nonatomic) CGFloat initialRatioXInCell;
-
 @property (assign, nonatomic) CGFloat initialOffset;
 @property (assign, nonatomic) CGFloat initialHeight;
-
 @property (assign, nonatomic) CGPoint pointInWindow;
-
 @property (assign, nonatomic) CGPoint startOffset;
 @property (assign, nonatomic) CGPoint endOffset;
-
+@property (assign, nonatomic) CGFloat minimizedCellSpacing;
 
 //Size
 
 //Default to screen height
 
 @property (readonly, nonatomic) CGSize currentCellSize;
-
 @property (readonly, nonatomic) CGFloat viewWidth;
-
 @property (readonly, nonatomic) CGFloat scale;
 @property (readonly, nonatomic) CGFloat minimizedScale;
-
 @property (readonly, nonatomic) CGFloat spacing;
 @property (readonly, nonatomic) CGFloat height;
-
 @property (readonly, nonatomic) CGFloat maxOffset;
 
 //MaxMin
@@ -72,27 +65,37 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     [super viewDidLoad];
     
+    _minimizedCellSpacing = 8;
+    
+    self.collectionView.clipsToBounds = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.collectionView registerClass:[PaperCell class]forCellWithReuseIdentifier:reuseIdentifier];
+    
     ((UICollectionViewFlowLayout *)self.collectionViewLayout).scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
+    [self addPanGesture];
+    [self addShadow];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)addPanGesture {
     _paperPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     _paperPanGestureRecognizer.delegate = self;
     [self.view addGestureRecognizer:_paperPanGestureRecognizer];
-    
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+}
+
+- (void)addShadow {
     
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionView.layer.shadowColor = [UIColor blackColor].CGColor;
     self.collectionView.layer.shadowOffset = CGSizeMake(0, 3);
     self.collectionView.layer.shadowOpacity = 0.2;
     self.collectionView.layer.shadowRadius = 2;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Getter/Setter
@@ -137,10 +140,10 @@ static NSString * const reuseIdentifier = @"PaperCell";
 }
 
 - (CGFloat)spacingForScale:(CGFloat)scale {
-    CGFloat x = 16-scale*16;
-    if (x < 0) {
-        x = 0;
-    }
+    CGFloat x = _minimizedCellSpacing;//-scale*_minimizedCellSpacing;
+//    if (x < 0) {
+//        x = 0;
+//    }
     return x;
 }
 
@@ -394,7 +397,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    
     return 10;
 }
 
@@ -414,6 +416,31 @@ static NSString * const reuseIdentifier = @"PaperCell";
         _initialRatioXInCell = .5;
         [self maximizeCellAtIndexPath:indexPath];
     }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    
+    if (_paperPagingEnabled) {
+        targetContentOffset->x = scrollView.contentOffset.x;
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    if (_paperPagingEnabled) {
+        CGFloat pageOffsetX = self.page * (self.currentCellSize.width + _minimizedCellSpacing) + _minimizedCellSpacing;
+        CGPoint scrollOffset = scrollView.contentOffset;
+        scrollOffset.x = pageOffsetX;
+        [scrollView setContentOffset:scrollOffset animated:YES];\
+    }
+}
+
+- (CGFloat)page {
+    CGFloat currentOffset = self.collectionView.contentOffset.x;
+    CGFloat page = currentOffset / (self.currentCellSize.width + _minimizedCellSpacing);
+    return roundf(page);
 }
 
 #pragma mark - Animations
@@ -441,11 +468,12 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     [self pop_removeAllAnimations];
     
-    self.collectionView.pagingEnabled = YES;
+//    self.collectionView.pagingEnabled = YES;
+    _paperPagingEnabled = YES;
     
     _startOffset = self.collectionView.contentOffset;
     _startOffset.y = self.maximizedHeight - _height;
-    _endOffset = CGPointMake(self.viewWidth*indexPath.item, 0);
+    _endOffset = CGPointMake((self.viewWidth + _minimizedCellSpacing) * indexPath.item + _minimizedCellSpacing, 0);
     
     if (self.maximizedHeight == _height) {
         [self.collectionView setContentOffset:_endOffset animated:YES];
@@ -478,7 +506,8 @@ static NSString * const reuseIdentifier = @"PaperCell";
     [[self.view findFirstResponder] resignFirstResponder];
     [self pop_removeAllAnimations];
     
-    self.collectionView.pagingEnabled = NO;
+//    self.collectionView.pagingEnabled = NO;
+    _paperPagingEnabled = NO;
     
     _startOffset = self.collectionView.contentOffset;
     _startOffset.y = self.maximizedHeight - _height;
