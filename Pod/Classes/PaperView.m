@@ -53,6 +53,15 @@
     [self.collectionViewController.view autoPinToSuperView];
 }
 
+- (void)addShadow {
+    
+    self.collectionViewController.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionViewController.collectionView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.collectionViewController.collectionView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.collectionViewController.collectionView.layer.shadowOpacity = 0.2;
+    self.collectionViewController.collectionView.layer.shadowRadius = 2;
+}
+
 - (void)setDelegate:(id<PaperCollectionViewControllerDelegate>)delegate {
     _delegate = delegate;
     _collectionViewController.delegate = delegate;

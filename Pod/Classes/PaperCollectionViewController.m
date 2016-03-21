@@ -11,7 +11,7 @@
 #import "UIView+PaperUtils.h"
 #import <pop/POP.h>
 #import "PaperView.h"
-
+#import "UICollectionView+PaperUtils.h"
 
 
 
@@ -43,7 +43,8 @@
 @property (readonly, nonatomic) CGFloat minimizedScale;
 @property (readonly, nonatomic) CGFloat spacing;
 @property (readonly, nonatomic) CGFloat height;
-@property (readonly, nonatomic) CGFloat maxOffset;
+@property (readonly, nonatomic) CGFloat maxOffsetMinimized;
+@property (readonly, nonatomic) CGFloat maxOffsetMaximized;
 
 //MaxMin
 
@@ -75,7 +76,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
     ((UICollectionViewFlowLayout *)self.collectionViewLayout).scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     [self addPanGesture];
-    [self addShadow];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,14 +89,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
     [self.view addGestureRecognizer:_paperPanGestureRecognizer];
 }
 
-- (void)addShadow {
-    
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    self.collectionView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.collectionView.layer.shadowOffset = CGSizeMake(0, 3);
-    self.collectionView.layer.shadowOpacity = 0.2;
-    self.collectionView.layer.shadowRadius = 2;
-}
 
 #pragma mark - Getter/Setter
 
@@ -136,14 +128,23 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (CGFloat)spacing {
     
-    return [self spacingForScale:self.scale];
+    return _cellSpacing;
 }
 
-- (CGFloat)spacingForScale:(CGFloat)scale {
-    CGFloat x = _cellSpacing;//-scale*_cellSpacing;
-//    if (x < 0) {
-//        x = 0;
-//    }
+- (CGFloat)margin {
+    
+    CGFloat distance = self.maximizedHeight - self.minimizedHeight;
+    CGFloat difference = _height - self.minimizedHeight;
+    
+    if (difference >= distance) {
+        return 0;
+    }
+    
+    if (difference <= 0) {
+        return _cellSpacing;
+    }
+    
+    CGFloat x = (1 - difference / distance) * _cellSpacing;
     return x;
 }
 
@@ -219,24 +220,24 @@ static NSString * const reuseIdentifier = @"PaperCell";
     self.collectionView.contentOffset = [self adjustedContentOffset];
 }
 
-- (CGFloat)offsetAtIndex:(NSUInteger)index {
-    
-    return [self offsetAtIndex:index forScale:self.minimizedScale];
-}
-
 - (CGFloat)offsetAtIndex:(NSUInteger)index forScale:(CGFloat)scale {
     
-    return index*(self.viewWidth*scale) + index*[self spacingForScale:scale] ;
+    return index*(self.viewWidth*scale) + index*_cellSpacing + self.margin;
 }
 
-- (CGFloat)maxOffset {
+- (CGFloat)maxOffsetMaximized {
+    
+    return [self maxOffsetForScale:self.scale];
+}
+
+- (CGFloat)maxOffsetMinimized {
     
     return [self maxOffsetForScale:self.minimizedScale];
 }
 
 - (CGFloat)maxOffsetForScale:(CGFloat)scale {
     
-    return [self offsetAtIndex:[self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0]]-self.view.frame.size.width + [self spacingForScale:scale];
+    return [self offsetAtIndex:self.collectionView.lastIndexPath.item forScale: scale];
 }
 
 #pragma mark - Pan Gesture
@@ -375,7 +376,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (UIEdgeInsets)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
-    return UIEdgeInsetsMake(0.0, self.spacing, 0.0, self.spacing);
+    return UIEdgeInsetsMake(0.0, self.margin, 0.0, self.margin);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -412,34 +413,71 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 #pragma mark - UIScrollViewDelegate
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    if (_paperPagingEnabled) {
+        [self.collectionView pop_removeAllAnimations];
+    }
+}
+
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
     
     if (_paperPagingEnabled) {
+        
+        CGFloat currentOffset = self.collectionView.contentOffset.x;
+        
+        BOOL bouncing = (currentOffset < 0 || currentOffset > self.maxOffsetMaximized);
+        if (bouncing) {
+            return;
+        }
+        
+        CGFloat page = currentOffset / (self.currentCellSize.width + _cellSpacing);
         targetContentOffset->x = scrollView.contentOffset.x;
         
-        if (_paperPagingEnabled) {
-            CGFloat currentOffset = self.collectionView.contentOffset.x;
-            CGFloat page = currentOffset / (self.currentCellSize.width + _cellSpacing);
-            
-            if (velocity.x > 1) {
-                page = ceilf(page);
-            }
-            else if (velocity.x < 1) {
-                page = floor(page);
-            }
-            else {
-                page = roundf(page);
-            }
-            
-            if (page < 0) {
-                page = 0;
-            }
-            
-            CGFloat pageOffsetX = page * (self.currentCellSize.width + _cellSpacing) + _cellSpacing;
-            CGPoint scrollOffset = scrollView.contentOffset;
-            scrollOffset.x = pageOffsetX;
-            [self.collectionView scrollRectToVisible:CGRectMake(scrollOffset.x, 0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height) animated:YES];
+        
+        if (velocity.x > 1) {
+            page = ceilf(page);
         }
+        else if (velocity.x < -1) {
+            page = floor(page);
+        }
+        else {
+            page = roundf(page);
+        }
+        
+        if (page < 0) {
+            page = 0;
+        }
+        CGFloat pageOffsetX = page * (self.currentCellSize.width + _cellSpacing) + self.margin;
+        CGPoint scrollOffset = scrollView.contentOffset;
+        scrollOffset.x = pageOffsetX;
+        
+//        CGRect endRect = CGRectMake(scrollOffset.x, 0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
+//        [self.collectionView scrollRectToVisible:endRect animated:NO];
+        
+        [self.collectionView pop_removeAllAnimations];
+        POPSpringAnimation *springAnimation = [POPSpringAnimation animation];
+        POPAnimatableProperty *property = [POPAnimatableProperty propertyWithName:@"offset" initializer:^(POPMutableAnimatableProperty *prop) {
+            prop.readBlock = ^(id obj, CGFloat values[]) {
+                values[0] = [obj horizontalOffset];
+            };
+            prop.writeBlock = ^(id obj, const CGFloat values[]) {
+                [obj setHorizontalOffset:values[0]];
+            };
+            prop.threshold = 0.01;
+        }];
+        
+        if (velocity.x != 0) {
+            springAnimation.velocity = @(fabs(velocity.x));
+        }
+        
+        springAnimation.springSpeed = 20;
+        springAnimation.property = property;
+        springAnimation.fromValue = @(currentOffset);
+        springAnimation.toValue = @(scrollOffset.x);
+        springAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished){
+        };
+        [self.collectionView pop_addAnimation:springAnimation forKey:NSStringFromSelector(@selector(horizontalOffset))];
     }
 }
 
@@ -476,7 +514,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     _startOffset = self.collectionView.contentOffset;
     _startOffset.y = self.maximizedHeight - _height;
-    _endOffset = CGPointMake((self.viewWidth + _cellSpacing) * indexPath.item + _cellSpacing, 0);
+    _endOffset = CGPointMake((self.viewWidth + _cellSpacing) * indexPath.item, 0);
     
     if (self.maximizedHeight == _height) {
         [self.collectionView setContentOffset:_endOffset animated:YES];
@@ -517,7 +555,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     CGFloat offsetX = [self offsetAtIndex:indexPath.item forScale:self.minimizedScale];
     offsetX -= (self.viewWidth/2 - (self.viewWidth*self.minimizedScale)/2);
     
-    CGFloat maxOffset = self.maxOffset;
+    CGFloat maxOffset = self.maxOffsetMinimized;
     
     _shouldFollowEndOffsetPath = NO;
     

@@ -24,3 +24,18 @@
 }
 
 @end
+
+
+@implementation UIScrollView (PaperUtils)
+
+- (CGFloat)horizontalOffset {
+    return self.contentOffset.x;
+}
+
+- (void)setHorizontalOffset:(CGFloat)horizontalOffset {
+    CGPoint offset = self.contentOffset;
+    offset.x = horizontalOffset;
+    self.contentOffset = offset;
+}
+
+@end

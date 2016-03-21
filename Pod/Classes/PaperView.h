@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet id<PaperCollectionViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet id<UICollectionViewDataSource> datasource;
 
+- (void)addShadow;
+
 @end

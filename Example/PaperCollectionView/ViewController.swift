@@ -22,6 +22,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, PaperCellCha
 //        paperView.datasource = self
         
         paperView.collectionViewController.collectionView?.registerClass(CustomPaperCell.self, forCellWithReuseIdentifier: "Cell")
+        paperView.addShadow()
     }
 
     override func didReceiveMemoryWarning() {

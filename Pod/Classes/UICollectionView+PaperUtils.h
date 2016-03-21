@@ -13,3 +13,10 @@
 @property (readonly, nonatomic) NSIndexPath *lastIndexPath;
 
 @end
+
+
+@interface UIScrollView (PaperUtils)
+
+@property (assign, nonatomic) CGFloat horizontalOffset;
+
+@end
