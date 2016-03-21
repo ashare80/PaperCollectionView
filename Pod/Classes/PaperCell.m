@@ -40,9 +40,9 @@
     
     [_scaledView removeFromSuperview];
     
+    scaledView.frame = [UIScreen mainScreen].bounds;
     scaledView.autoresizingMask = UIViewAutoresizingNone;
     scaledView.layer.anchorPoint = CGPointMake(0.0, 0.0);
-    scaledView.frame = [UIScreen mainScreen].bounds;
     
     [self.contentView addSubview:scaledView];
     
@@ -55,7 +55,9 @@
     
     CGFloat ratio = self.scale;
     
+    //This order is important --- transform -> frame -> transform
     _scaledView.transform = CGAffineTransformIdentity;
+    _scaledView.frame = [UIScreen mainScreen].bounds;
     _scaledView.transform = CGAffineTransformMakeScale(ratio, ratio);
     
     if ([self.delegate respondsToSelector:@selector(presentationRatio:)]) {

@@ -12,5 +12,10 @@ import PaperCollectionView
 
 class CustomPaperCell: PaperCell {
     
+    var viewController: ContentViewController?
+}
+
+class ContentViewController: UIViewController {
+    
     
 }

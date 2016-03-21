@@ -43,6 +43,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, PaperCellCha
         
         let cell = collectionView .dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CustomPaperCell
         
+        if cell.viewController == nil {
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
+            paperView.collectionViewController.addChildViewController(vc)
+            cell.scaledView = vc.view
+            vc.didMoveToParentViewController(paperView.collectionViewController)
+            cell.viewController = vc
+        }
+        
         return cell
     }
 }

@@ -72,4 +72,10 @@
     _collectionViewController.collectionView.dataSource = datasource;
 }
 
+- (void)setParentViewController:(UIViewController *)parentViewController {
+    _parentViewController = parentViewController;
+    [parentViewController addChildViewController:_collectionViewController];
+    [_collectionViewController didMoveToParentViewController:parentViewController];
+}
+
 @end

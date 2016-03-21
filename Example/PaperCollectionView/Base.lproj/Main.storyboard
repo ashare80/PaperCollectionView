@@ -26,6 +26,7 @@
                                 <connections>
                                     <outlet property="datasource" destination="vXZ-lx-hvc" id="Q6Q-eG-aOb"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="XFr-dZ-6Cq"/>
+                                    <outlet property="parentViewController" destination="vXZ-lx-hvc" id="m8R-Li-THl"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -44,6 +45,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="147" y="336"/>
+        </scene>
+        <!--Content View Controller-->
+        <scene sceneID="ixa-cs-edG">
+            <objects>
+                <viewController storyboardIdentifier="ContentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="F5t-Mx-KIS" customClass="ContentViewController" customModule="PaperCollectionView_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U8j-Im-hgJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="o9y-EV-Ibh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oLN-Nx-DvJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gM8-wA-zBu">
+                                <rect key="frame" x="16" y="36" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="4Rv-ZP-TXp"/>
+                                    <constraint firstAttribute="height" constant="150" id="kee-ig-Fjh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iin-SJ-ohD">
+                                <rect key="frame" x="16" y="202" width="288" height="350"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gM8-wA-zBu" firstAttribute="leading" secondItem="oLN-Nx-DvJ" secondAttribute="leading" constant="16" id="1v5-yo-6zs"/>
+                            <constraint firstItem="o9y-EV-Ibh" firstAttribute="top" secondItem="Iin-SJ-ohD" secondAttribute="bottom" constant="16" id="Fkp-zn-Eab"/>
+                            <constraint firstItem="Iin-SJ-ohD" firstAttribute="top" secondItem="gM8-wA-zBu" secondAttribute="bottom" constant="16" id="S39-Xy-yPp"/>
+                            <constraint firstItem="Iin-SJ-ohD" firstAttribute="leading" secondItem="oLN-Nx-DvJ" secondAttribute="leading" constant="16" id="Z7V-Ds-NIG"/>
+                            <constraint firstItem="gM8-wA-zBu" firstAttribute="top" secondItem="U8j-Im-hgJ" secondAttribute="bottom" constant="16" id="ZBP-r4-ntX"/>
+                            <constraint firstAttribute="trailing" secondItem="Iin-SJ-ohD" secondAttribute="trailing" constant="16" id="pDc-Kt-ywE"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7SJ-Nf-TeR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="555" y="336"/>
         </scene>
     </scenes>
 </document>
