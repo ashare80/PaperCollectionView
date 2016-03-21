@@ -29,7 +29,7 @@
     return CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
 }
 
-- (void)autoPinToSuperView {
+- (NSArray<NSLayoutConstraint *>*)autoPinToSuperView {
     
     UIView *childView = self;
     UIView *superView = self.superview;
@@ -71,6 +71,8 @@
                                                              multiplier:1
                                                                constant:0];
     [superView addConstraint:bottom];
+    
+    return @[leading, top, trailing, bottom];
 }
 
 @end

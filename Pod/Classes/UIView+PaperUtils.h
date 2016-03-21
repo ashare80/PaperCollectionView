@@ -12,6 +12,6 @@
 
 - (UIView *)findFirstResponder;
 - (CGPoint)contentCenter;
-- (void)autoPinToSuperView;
+- (NSArray<NSLayoutConstraint *>*)autoPinToSuperView;
 
 @end

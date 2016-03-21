@@ -31,7 +31,7 @@
 @property (assign, nonatomic) CGPoint pointInWindow;
 @property (assign, nonatomic) CGPoint startOffset;
 @property (assign, nonatomic) CGPoint endOffset;
-@property (assign, nonatomic) CGFloat minimizedCellSpacing;
+@property (assign, nonatomic) CGFloat cellSpacing;
 
 //Size
 
@@ -65,7 +65,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     [super viewDidLoad];
     
-    _minimizedCellSpacing = 8;
+    self.cellSpacing = 8;
     
     self.collectionView.clipsToBounds = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -140,7 +140,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
 }
 
 - (CGFloat)spacingForScale:(CGFloat)scale {
-    CGFloat x = _minimizedCellSpacing;//-scale*_minimizedCellSpacing;
+    CGFloat x = _cellSpacing;//-scale*_cellSpacing;
 //    if (x < 0) {
 //        x = 0;
 //    }
@@ -424,23 +424,31 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     if (_paperPagingEnabled) {
         targetContentOffset->x = scrollView.contentOffset.x;
+        
+        if (_paperPagingEnabled) {
+            CGFloat currentOffset = self.collectionView.contentOffset.x;
+            CGFloat page = currentOffset / (self.currentCellSize.width + _cellSpacing);
+            
+            if (velocity.x > 1) {
+                page = ceilf(page);
+            }
+            else if (velocity.x < 1) {
+                page = floor(page);
+            }
+            else {
+                page = roundf(page);
+            }
+            
+            if (page < 0) {
+                page = 0;
+            }
+            
+            CGFloat pageOffsetX = page * (self.currentCellSize.width + _cellSpacing) + _cellSpacing;
+            CGPoint scrollOffset = scrollView.contentOffset;
+            scrollOffset.x = pageOffsetX;
+            [self.collectionView scrollRectToVisible:CGRectMake(scrollOffset.x, 0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height) animated:YES];
+        }
     }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
-    if (_paperPagingEnabled) {
-        CGFloat pageOffsetX = self.page * (self.currentCellSize.width + _minimizedCellSpacing) + _minimizedCellSpacing;
-        CGPoint scrollOffset = scrollView.contentOffset;
-        scrollOffset.x = pageOffsetX;
-        [scrollView setContentOffset:scrollOffset animated:YES];\
-    }
-}
-
-- (CGFloat)page {
-    CGFloat currentOffset = self.collectionView.contentOffset.x;
-    CGFloat page = currentOffset / (self.currentCellSize.width + _minimizedCellSpacing);
-    return roundf(page);
 }
 
 #pragma mark - Animations
@@ -473,7 +481,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     _startOffset = self.collectionView.contentOffset;
     _startOffset.y = self.maximizedHeight - _height;
-    _endOffset = CGPointMake((self.viewWidth + _minimizedCellSpacing) * indexPath.item + _minimizedCellSpacing, 0);
+    _endOffset = CGPointMake((self.viewWidth + _cellSpacing) * indexPath.item + _cellSpacing, 0);
     
     if (self.maximizedHeight == _height) {
         [self.collectionView setContentOffset:_endOffset animated:YES];
