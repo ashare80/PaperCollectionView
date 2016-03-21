@@ -1,19 +1,19 @@
 //
-//  PaperCollectionView.m
+//  PaperView.m
 //  Pods
 //
 //  Created by Adam J Share on 3/20/16.
 //
 //
 
-#import "PaperCollectionView.h"
+#import "PaperView.h"
 #import "UIView+PaperUtils.h"
 
-@interface PaperCollectionView ()
+@interface PaperView ()
 
 @end
 
-@implementation PaperCollectionView
+@implementation PaperView
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
@@ -56,6 +56,11 @@
 - (void)setDelegate:(id<PaperCollectionViewControllerDelegate>)delegate {
     _delegate = delegate;
     _collectionViewController.delegate = delegate;
+}
+
+- (void)setDatasource:(id<UICollectionViewDataSource>)datasource {
+    _datasource = datasource;
+    _collectionViewController.collectionView.dataSource = datasource;
 }
 
 @end

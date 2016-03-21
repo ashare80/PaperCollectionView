@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		7FCFC8203DFD7CBAA586B023 /* Pods_PaperCollectionView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA576CBD1DAD29B62E9C9913 /* Pods_PaperCollectionView_Tests.framework */; };
+		C5110A5E1C9FAE9A00689E05 /* CustomPaperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5110A5D1C9FAE9A00689E05 /* CustomPaperCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		A43524B04CD85ED6B3791E71 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		BA576CBD1DAD29B62E9C9913 /* Pods_PaperCollectionView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperCollectionView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C03A6BEF5B10530C67C6DBBE /* PaperCollectionView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PaperCollectionView.podspec; path = ../PaperCollectionView.podspec; sourceTree = "<group>"; };
+		C5110A5D1C9FAE9A00689E05 /* CustomPaperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPaperCell.swift; sourceTree = "<group>"; };
 		D830009CE2E452479878249E /* Pods_PaperCollectionView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PaperCollectionView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				C5110A5D1C9FAE9A00689E05 /* CustomPaperCell.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -360,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				C5110A5E1C9FAE9A00689E05 /* CustomPaperCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

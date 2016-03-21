@@ -1,5 +1,5 @@
 //
-//  PaperCollectionView.h
+//  PaperView.h
 //  Pods
 //
 //  Created by Adam J Share on 3/20/16.
@@ -10,9 +10,10 @@
 #import "PaperCollectionViewController.h"
 
 
-@interface PaperCollectionView : UIView
+@interface PaperView : UIView
 
 @property (strong, nonatomic) PaperCollectionViewController *collectionViewController;
-@property (weak, nonatomic) id<PaperCollectionViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet id<PaperCollectionViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet id<UICollectionViewDataSource> datasource;
 
 @end

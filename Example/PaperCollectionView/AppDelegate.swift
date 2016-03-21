@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  PaperCollectionView
+//  PaperView
 //
 //  Created by Adam Share on 03/19/2016.
 //  Copyright (c) 2016 Adam Share. All rights reserved.

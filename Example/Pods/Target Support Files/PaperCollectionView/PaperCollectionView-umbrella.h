@@ -1,8 +1,8 @@
 #import <UIKit/UIKit.h>
 
 #import "PaperCell.h"
-#import "PaperCollectionView.h"
 #import "PaperCollectionViewController.h"
+#import "PaperView.h"
 #import "UICollectionView+PaperUtils.h"
 #import "UIView+PaperUtils.h"
 

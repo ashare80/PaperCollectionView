@@ -1,15 +1,15 @@
 {
   "name": "PaperCollectionView",
   "version": "0.1.0",
-  "summary": "A short description of PaperCollectionView.",
+  "summary": "A short description of PaperView.",
   "description": "",
-  "homepage": "https://github.com/ashare80/PaperCollectionView",
+  "homepage": "https://github.com/ashare80/PaperView",
   "license": "MIT",
   "authors": {
     "Adam Share": "ashare80@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/PaperCollectionView.git",
+    "git": "https://github.com/<GITHUB_USERNAME>/PaperView.git",
     "tag": "0.1.0"
   },
   "platforms": {

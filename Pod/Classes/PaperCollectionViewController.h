@@ -14,11 +14,11 @@
 @protocol PaperCollectionViewControllerDelegate <NSObject>
 
 @optional
-- (void)paperCollectionViewControllerDidMinimize:(PaperCollectionViewController *)controller;
-- (void)paperCollectionViewControllerDidMaximize:(PaperCollectionViewController *)controller;
+- (void)PaperCollectionViewControllerDidMinimize:(PaperCollectionViewController *)controller;
+- (void)PaperCollectionViewControllerDidMaximize:(PaperCollectionViewController *)controller;
 
-- (void)paperCollectionViewControllerWillMinimize:(PaperCollectionViewController *)controller;
-- (void)paperCollectionViewControllerWillMaximize:(PaperCollectionViewController *)controller;
+- (void)PaperCollectionViewControllerWillMinimize:(PaperCollectionViewController *)controller;
+- (void)PaperCollectionViewControllerWillMaximize:(PaperCollectionViewController *)controller;
 
 - (void)didDequeuePaperCellForReuse:(PaperCell *)cell;
 

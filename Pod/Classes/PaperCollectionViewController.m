@@ -10,7 +10,7 @@
 #import "PaperCell.h"
 #import "UIView+PaperUtils.h"
 #import <pop/POP.h>
-#import "PaperCollectionView.h"
+#import "PaperView.h"
 
 
 
@@ -236,7 +236,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (CGFloat)maxOffsetForScale:(CGFloat)scale {
     
-    return [self offsetAtIndex:[self collectionView:self.collectionView numberOfItemsInSection:0]]-self.view.frame.size.width + [self spacingForScale:scale];
+    return [self offsetAtIndex:[self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0]]-self.view.frame.size.width + [self spacingForScale:scale];
 }
 
 #pragma mark - Pan Gesture
@@ -355,6 +355,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     CGFloat panPositionX = _pointInWindow.x;
     CGFloat panPositionOffset = panPositionX + contentOffset.x;
     
+    
     CGFloat cellX = _panBeganIndexPath.item*self.currentCellSize.width + _panBeganIndexPath.item*self.spacing + [self collectionView:self.collectionView layout:self.collectionViewLayout insetForSectionAtIndex:0].left;
     CGFloat cellXPoint = cellX+_initialRatioXInCell*self.currentCellSize.width;
     
@@ -389,15 +390,9 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    return 1;
-}
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 10;
+    return 0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -411,9 +406,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.minimized) {
-        _panBeganIndexPath = indexPath;
-        _pointInWindow = self.view.center;
-        _initialRatioXInCell = .5;
         [self maximizeCellAtIndexPath:indexPath];
     }
 }
@@ -469,6 +461,10 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (void)maximizeCellAtIndexPath:(NSIndexPath *)indexPath  {
     
+    _panBeganIndexPath = indexPath;
+    _pointInWindow = self.view.center;
+    _initialRatioXInCell = .5;
+    
     [self maximizeCellAtIndexPath:indexPath velocity:0];
 }
 
@@ -476,7 +472,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     [self pop_removeAllAnimations];
     
-//    self.collectionView.pagingEnabled = YES;
     _paperPagingEnabled = YES;
     
     _startOffset = self.collectionView.contentOffset;
@@ -488,14 +483,14 @@ static NSString * const reuseIdentifier = @"PaperCell";
         return;
     }
     
-    if ([_delegate respondsToSelector:@selector(paperCollectionViewControllerWillMaximize:)]) {
-        [_delegate paperCollectionViewControllerWillMaximize:self];
+    if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerWillMaximize:)]) {
+        [_delegate PaperCollectionViewControllerWillMaximize:self];
     }
     
     _shouldFollowEndOffsetPath = YES;
     [self animateFromHeight:_height toScaledHeight:self.maximizedHeight velocity:velocity completion:^(BOOL finished) {
         _shouldFollowEndOffsetPath = NO;
-        [self scrollToAndMaximizeIndexPath:indexPath];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }];
 }
 
@@ -514,7 +509,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
     [[self.view findFirstResponder] resignFirstResponder];
     [self pop_removeAllAnimations];
     
-//    self.collectionView.pagingEnabled = NO;
     _paperPagingEnabled = NO;
     
     _startOffset = self.collectionView.contentOffset;
@@ -538,8 +532,8 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     _endOffset = CGPointMake(offsetX, self.maximizedHeight - _minimizedHeight);
     
-    if ([_delegate respondsToSelector:@selector(paperCollectionViewControllerWillMinimize:)]) {
-        [_delegate paperCollectionViewControllerWillMinimize:self];
+    if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerWillMinimize:)]) {
+        [_delegate PaperCollectionViewControllerWillMinimize:self];
     }
     
     [self animateFromHeight:_height toScaledHeight:_minimizedHeight velocity:0 completion:^(BOOL finished) {
@@ -579,13 +573,13 @@ static NSString * const reuseIdentifier = @"PaperCell";
         
         if (finished) {
             if (scaledHeight == _minimizedHeight) {
-                if ([_delegate respondsToSelector:@selector(paperCollectionViewControllerDidMinimize:)]) {
-                    [_delegate paperCollectionViewControllerDidMinimize:self];
+                if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerDidMinimize:)]) {
+                    [_delegate PaperCollectionViewControllerDidMinimize:self];
                 }
             }
             else {
-                if ([_delegate respondsToSelector:@selector(paperCollectionViewControllerDidMinimize:)]) {
-                    [_delegate paperCollectionViewControllerDidMaximize:self];
+                if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerDidMinimize:)]) {
+                    [_delegate PaperCollectionViewControllerDidMaximize:self];
                 }
             }
             if (completion) {
