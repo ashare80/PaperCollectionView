@@ -538,7 +538,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     }
     
     if ([_delegate respondsToSelector:@selector(paperViewWillMaximize:)]) {
-        [_delegate paperViewWillMaximize:self.collectionView.superview];
+        [_delegate paperViewWillMaximize:(PaperView *)self.collectionView.superview];
     }
     
     _shouldFollowEndOffsetPath = YES;
@@ -587,7 +587,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     _endOffset = CGPointMake(offsetX, self.maximizedHeight - _minimizedHeight);
     
     if ([_delegate respondsToSelector:@selector(paperViewWillMinimize:)]) {
-        [_delegate paperViewWillMinimize:self.collectionView.superview];
+        [_delegate paperViewWillMinimize:(PaperView *)self.collectionView.superview];
     }
     
     [self animateFromHeight:_height toScaledHeight:_minimizedHeight velocity:0 completion:^(BOOL finished) {
@@ -628,12 +628,12 @@ static NSString * const reuseIdentifier = @"PaperCell";
         if (finished) {
             if (scaledHeight == _minimizedHeight) {
                 if ([_delegate respondsToSelector:@selector(paperViewDidMinimize:)]) {
-                    [_delegate paperViewDidMinimize:self.collectionView.superview];
+                    [_delegate paperViewDidMinimize:(PaperView *)self.collectionView.superview];
                 }
             }
             else {
                 if ([_delegate respondsToSelector:@selector(paperViewDidMaximize:)]) {
-                    [_delegate paperViewDidMaximize:self.collectionView.superview];
+                    [_delegate paperViewDidMaximize:(PaperView *)self.collectionView.superview];
                 }
             }
             if (completion) {
