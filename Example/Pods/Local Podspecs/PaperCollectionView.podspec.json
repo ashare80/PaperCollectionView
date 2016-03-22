@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "summary": "Collection view that operates similar to Facebook's Paper.",
   "description": "Swipe through content like Paper from Facebook. Using the PaperView, which wraps around a configured UICollectionViewController, you can control the datasource and customize cells to your needs.",
-  "homepage": "https://github.com/ashare80/PaperView",
+  "homepage": "https://github.com/ashare80/PaperCollectionView",
   "license": "MIT",
   "authors": {
     "Adam Share": "ashare80@gmail.com"

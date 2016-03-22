@@ -20,8 +20,8 @@ Pod::Spec.new do |s|
 Swipe through content like Paper from Facebook. Using the PaperView, which wraps around a configured UICollectionViewController, you can control the datasource and customize cells to your needs.
                        DESC
 
-  s.homepage         = "https://github.com/ashare80/PaperView"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/ashare80/PaperCollectionView"
+  s.screenshots     = "https://s3.amazonaws.com/cocoacontrols_production/uploads/control_image/image/8707/IMG_1767.png",
   s.license          = 'MIT'
   s.author           = { "Adam Share" => "ashare80@gmail.com" }
   s.source           = { :git => "https://github.com/ashare80/PaperCollectionView.git", :tag => s.version.to_s }
