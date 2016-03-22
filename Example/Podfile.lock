@@ -1,5 +1,5 @@
 PODS:
-  - PaperCollectionView (0.1.0):
+  - PaperCollectionView (1.0.0):
     - pop
   - pop (1.0.9)
 
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PaperCollectionView: 066b82d1d7768ac2dd30c9970b0278be1a49b4e1
+  PaperCollectionView: ed88cd6c7e68b4ad2bd0e1e209ab0e49a102e0d1
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
 COCOAPODS: 0.39.0

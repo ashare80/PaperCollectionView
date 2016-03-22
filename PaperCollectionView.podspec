@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "PaperCollectionView"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of PaperView."
+  s.version          = "1.0.0"
+  s.summary          = "Collection view that operates similar to Facebook's Paper."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,13 +17,14 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
+Swipe through content like Paper from Facebook. Using the PaperView, which wraps around a configured UICollectionViewController, you can control the datasource and customize cells to your needs.
                        DESC
 
   s.homepage         = "https://github.com/ashare80/PaperView"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Adam Share" => "ashare80@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/PaperView.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/ashare80/PaperCollectionView.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
