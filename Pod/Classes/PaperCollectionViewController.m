@@ -26,6 +26,7 @@
 @property (readonly, nonatomic) NSIndexPath *pagingIndexPath;
 
 @property (assign, nonatomic) CGFloat initialRatioXInCell;
+@property (assign, nonatomic) CGFloat initialRatioYInCell;
 @property (assign, nonatomic) CGFloat initialOffset;
 @property (assign, nonatomic) CGFloat initialHeight;
 @property (assign, nonatomic) CGPoint pointInWindow;
@@ -274,7 +275,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     CGFloat changeY = _initialOffset - translation.y;
     
-    CGFloat endHeight = _initialHeight+changeY;
+    CGFloat endHeight = _initialHeight+ changeY * (1+_initialRatioYInCell);
     
     CGPoint gestureVelocity = [panGesture velocityInView:self.view];
     
@@ -319,6 +320,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
                 }
                 else {
                     _initialRatioXInCell = [panGesture locationInView:highlightedCell].x/highlightedCell.frame.size.width;
+                    _initialRatioYInCell = [panGesture locationInView:highlightedCell].y/highlightedCell.frame.size.height;
                 }
             }
             
@@ -364,7 +366,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     
     CGFloat cellX = _panBeganIndexPath.item*self.currentCellSize.width + _panBeganIndexPath.item*self.spacing + [self collectionView:self.collectionView layout:self.collectionViewLayout insetForSectionAtIndex:0].left;
-    CGFloat cellXPoint = cellX+_initialRatioXInCell*self.currentCellSize.width;
+    CGFloat cellXPoint = cellX + _initialRatioXInCell * self.currentCellSize.width;
     
     CGFloat adjustment = cellXPoint - panPositionOffset;
     
@@ -505,6 +507,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     _panBeganIndexPath = indexPath;
     _pointInWindow = self.view.center;
     _initialRatioXInCell = .5;
+    _initialRatioYInCell = .5;
     
     [self maximizeCellAtIndexPath:indexPath velocity:0];
 }
