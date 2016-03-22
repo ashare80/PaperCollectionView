@@ -43,6 +43,7 @@
 @property (readonly, nonatomic) CGFloat minimizedScale;
 @property (readonly, nonatomic) CGFloat spacing;
 @property (readonly, nonatomic) CGFloat height;
+@property (readonly, nonatomic) CGFloat margin;
 @property (readonly, nonatomic) CGFloat maxOffsetMinimized;
 @property (readonly, nonatomic) CGFloat maxOffsetMaximized;
 
@@ -132,9 +133,13 @@ static NSString * const reuseIdentifier = @"PaperCell";
 }
 
 - (CGFloat)margin {
+    return [self marginForScale:self.scale];
+}
+
+- (CGFloat)marginForScale:(CGFloat)scale {
     
     CGFloat distance = self.maximizedHeight - self.minimizedHeight;
-    CGFloat difference = _height - self.minimizedHeight;
+    CGFloat difference = self.maximizedHeight * scale - self.minimizedHeight;
     
     if (difference >= distance) {
         return 0;
@@ -222,7 +227,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (CGFloat)offsetAtIndex:(NSUInteger)index forScale:(CGFloat)scale {
     
-    return index*(self.viewWidth*scale) + index*_cellSpacing + self.margin;
+    return index * self.viewWidth * scale + index * _cellSpacing + [self marginForScale:scale];
 }
 
 - (CGFloat)maxOffsetMaximized {
@@ -237,7 +242,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (CGFloat)maxOffsetForScale:(CGFloat)scale {
     
-    return [self offsetAtIndex:self.collectionView.lastIndexPath.item forScale: scale];
+    return floor([self offsetAtIndex:self.collectionView.lastIndexPath.item forScale: scale] - (self.viewWidth - self.viewWidth * scale) + [self marginForScale:scale]);
 }
 
 #pragma mark - Pan Gesture
@@ -292,6 +297,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
         case UIGestureRecognizerStateBegan: {
             
             [self pop_removeAllAnimations];
+            [self.collectionView pop_removeAllAnimations];
             
             _animating = NO;
             
@@ -451,9 +457,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
         CGFloat pageOffsetX = page * (self.currentCellSize.width + _cellSpacing) + self.margin;
         CGPoint scrollOffset = scrollView.contentOffset;
         scrollOffset.x = pageOffsetX;
-        
-//        CGRect endRect = CGRectMake(scrollOffset.x, 0, self.collectionView.bounds.size.width, self.collectionView.bounds.size.height);
-//        [self.collectionView scrollRectToVisible:endRect animated:NO];
         
         [self.collectionView pop_removeAllAnimations];
         POPSpringAnimation *springAnimation = [POPSpringAnimation animation];
