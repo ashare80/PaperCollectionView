@@ -11,7 +11,7 @@
 @protocol PaperCellChangeDelegate <NSObject>
 
 @optional
-- (void)presentationRatio:(float)ratio;
+- (void)presentationRatio:(CGFloat)ratio;
 
 @end
 

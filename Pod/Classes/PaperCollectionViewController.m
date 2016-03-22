@@ -224,6 +224,16 @@ static NSString * const reuseIdentifier = @"PaperCell";
     }
     
     self.collectionView.contentOffset = [self adjustedContentOffset];
+    
+    if ([self.delegate respondsToSelector:@selector(paperViewHeightDidChange:percentMaximized:)]) {
+        CGFloat percent = (height - self.minimizedHeight) / (self.maximizedHeight - self.minimizedHeight);
+        if (percent > 1) {
+            percent = 1;
+        } else if (percent < 0) {
+            percent = 0;
+        }
+        [self.delegate paperViewHeightDidChange:_height percentMaximized:percent];
+    }
 }
 
 - (CGFloat)offsetAtIndex:(NSUInteger)index forScale:(CGFloat)scale {
@@ -527,8 +537,8 @@ static NSString * const reuseIdentifier = @"PaperCell";
         return;
     }
     
-    if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerWillMaximize:)]) {
-        [_delegate PaperCollectionViewControllerWillMaximize:self];
+    if ([_delegate respondsToSelector:@selector(paperViewWillMaximize:)]) {
+        [_delegate paperViewWillMaximize:self.collectionView.superview];
     }
     
     _shouldFollowEndOffsetPath = YES;
@@ -576,8 +586,8 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     _endOffset = CGPointMake(offsetX, self.maximizedHeight - _minimizedHeight);
     
-    if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerWillMinimize:)]) {
-        [_delegate PaperCollectionViewControllerWillMinimize:self];
+    if ([_delegate respondsToSelector:@selector(paperViewWillMinimize:)]) {
+        [_delegate paperViewWillMinimize:self.collectionView.superview];
     }
     
     [self animateFromHeight:_height toScaledHeight:_minimizedHeight velocity:0 completion:^(BOOL finished) {
@@ -617,13 +627,13 @@ static NSString * const reuseIdentifier = @"PaperCell";
         
         if (finished) {
             if (scaledHeight == _minimizedHeight) {
-                if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerDidMinimize:)]) {
-                    [_delegate PaperCollectionViewControllerDidMinimize:self];
+                if ([_delegate respondsToSelector:@selector(paperViewDidMinimize:)]) {
+                    [_delegate paperViewDidMinimize:self.collectionView.superview];
                 }
             }
             else {
-                if ([_delegate respondsToSelector:@selector(PaperCollectionViewControllerDidMinimize:)]) {
-                    [_delegate PaperCollectionViewControllerDidMaximize:self];
+                if ([_delegate respondsToSelector:@selector(paperViewDidMaximize:)]) {
+                    [_delegate paperViewDidMaximize:self.collectionView.superview];
                 }
             }
             if (completion) {

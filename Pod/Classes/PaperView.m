@@ -62,7 +62,7 @@
     self.collectionViewController.collectionView.layer.shadowRadius = 2;
 }
 
-- (void)setDelegate:(id<PaperCollectionViewControllerDelegate>)delegate {
+- (void)setDelegate:(id<PaperViewDelegate>)delegate {
     _delegate = delegate;
     _collectionViewController.delegate = delegate;
 }

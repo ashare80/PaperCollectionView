@@ -9,19 +9,18 @@
 import UIKit
 import PaperCollectionView
 
-class ViewController: UIViewController, UICollectionViewDataSource, PaperCellChangeDelegate {
+let kReuseID = "Cell"
+
+class ViewController: UIViewController, UICollectionViewDataSource, PaperViewDelegate {
     
+    @IBOutlet weak var blackView: UIView!
     @IBOutlet weak var paperView: PaperView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        Available as IBOutlet
-//        paperView.delegate = self
-//        paperView.datasource = self
-        
-        paperView.collectionViewController.collectionView?.registerClass(CustomPaperCell.self, forCellWithReuseIdentifier: "Cell")
+        paperView.collectionViewController.collectionView?.registerClass(CustomPaperCell.self, forCellWithReuseIdentifier: kReuseID)
         paperView.addShadow()
     }
 
@@ -30,10 +29,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, PaperCellCha
         // Dispose of any resources that can be recreated.
     }
 
+    func paperViewHeightDidChange(height: CGFloat, percentMaximized percent: CGFloat) {
+        blackView.alpha = percent
+    }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -41,14 +44,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, PaperCellCha
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView .dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CustomPaperCell
+        let cell = collectionView .dequeueReusableCellWithReuseIdentifier(kReuseID, forIndexPath: indexPath) as! CustomPaperCell
         
         if cell.viewController == nil {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
+            cell.delegate = vc
             paperView.collectionViewController.addChildViewController(vc)
             cell.scaledView = vc.view
             vc.didMoveToParentViewController(paperView.collectionViewController)
             cell.viewController = vc
+            
+            cell.layer.cornerRadius = 4
+            cell.clipsToBounds = true
         }
         
         return cell

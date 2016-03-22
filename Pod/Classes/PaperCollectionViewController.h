@@ -10,23 +10,24 @@
 #import "PaperCell.h"
 
 @class PaperCollectionViewController;
+@class PaperView;
 
-@protocol PaperCollectionViewControllerDelegate <NSObject>
+@protocol PaperViewDelegate <NSObject>
 
 @optional
-- (void)PaperCollectionViewControllerDidMinimize:(PaperCollectionViewController *)controller;
-- (void)PaperCollectionViewControllerDidMaximize:(PaperCollectionViewController *)controller;
+- (void)paperViewDidMinimize:(PaperView *)view;
+- (void)paperViewDidMaximize:(PaperView *)view;
 
-- (void)PaperCollectionViewControllerWillMinimize:(PaperCollectionViewController *)controller;
-- (void)PaperCollectionViewControllerWillMaximize:(PaperCollectionViewController *)controller;
+- (void)paperViewWillMinimize:(PaperView *)view;
+- (void)paperViewWillMaximize:(PaperView *)view;
 
-- (void)didDequeuePaperCellForReuse:(PaperCell *)cell;
+- (void)paperViewHeightDidChange:(CGFloat)height percentMaximized:(CGFloat)percent;
 
 @end
 
 @interface PaperCollectionViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (weak, nonatomic) id<PaperCollectionViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<PaperViewDelegate> delegate;
 
 @property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
 

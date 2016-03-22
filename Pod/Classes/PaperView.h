@@ -13,7 +13,7 @@
 @interface PaperView : UIView
 
 @property (strong, nonatomic) PaperCollectionViewController *collectionViewController;
-@property (weak, nonatomic) IBOutlet id<PaperCollectionViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet id<PaperViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet id<UICollectionViewDataSource> datasource;
 @property (weak, nonatomic) IBOutlet UIViewController *parentViewController;
 
