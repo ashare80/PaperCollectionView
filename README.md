@@ -5,9 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/PaperView.svg?style=flat)](http://cocoapods.org/pods/PaperView)
 [![Platform](https://img.shields.io/cocoapods/p/PaperView.svg?style=flat)](http://cocoapods.org/pods/PaperView)
 
-[![ScreenShot](https://appetize.io/embed/wtnyt8njvkzj6c8u0gdtr0x7c4?device=iphone5s&scale=75&orientation=portrait&osVersion=9.2)](https://appetize.io/embed/wtnyt8njvkzj6c8u0gdtr0x7c4?device=iphone5s&scale=75&orientation=portrait&osVersion=9.2)
-
-<iframe width="854" height="480" src="https://appetize.io/embed/wtnyt8njvkzj6c8u0gdtr0x7c4?device=iphone5s&scale=75&orientation=portrait&osVersion=9.2" frameborder="0" allowfullscreen></iframe>
+[![ScreenShot](https://s3.amazonaws.com/cocoacontrols_production/uploads/control_image/image/8707/IMG_1767.png)](https://appetize.io/embed/wtnyt8njvkzj6c8u0gdtr0x7c4?device=iphone5s&scale=75&orientation=portrait&osVersion=9.2)
 
 ## Usage
 
