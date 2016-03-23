@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PaperCollectionView: ec517ec5ec2cdf55c56f54e56b390308f68707cf
+  PaperCollectionView: b110c8d714eead30ee394a35640e5c706aeca005
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
 
 COCOAPODS: 0.39.0

@@ -21,7 +21,7 @@ Swipe through content like Paper from Facebook. Using the PaperView, which wraps
                        DESC
 
   s.homepage         = "https://github.com/ashare80/PaperCollectionView"
-  s.screenshots     = "https://s3.amazonaws.com/cocoacontrols_production/uploads/control_image/image/8725/Simulator_Screen_Shot_Mar_22__2016__11.13.52_PM.png",
+  s.screenshots      = "https://s3.amazonaws.com/cocoacontrols_production/uploads/control_image/image/8725/Simulator_Screen_Shot_Mar_22__2016__11.13.52_PM.png"
   s.license          = 'MIT'
   s.author           = { "Adam Share" => "ashare80@gmail.com" }
   s.source           = { :git => "https://github.com/ashare80/PaperCollectionView.git", :tag => s.version.to_s }
