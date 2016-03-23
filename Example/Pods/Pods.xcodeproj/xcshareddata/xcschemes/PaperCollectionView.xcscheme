@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9B3FAE7A8FEBD2ACB084BA5E'
+               BlueprintIdentifier = '620957B4B8F5465002966D3E'
                BlueprintName = 'PaperCollectionView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'PaperCollectionView.framework'>
