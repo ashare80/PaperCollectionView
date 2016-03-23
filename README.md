@@ -5,8 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/PaperView.svg?style=flat)](http://cocoapods.org/pods/PaperView)
 [![Platform](https://img.shields.io/cocoapods/p/PaperView.svg?style=flat)](http://cocoapods.org/pods/PaperView)
 
-[![ScreenShot](https://s3.amazonaws.com/cocoacontrols_production/uploads/control_image/image/8707/IMG_1767.png)](https://appetize.io/embed/wtnyt8njvkzj6c8u0gdtr0x7c4?device=iphone5s&scale=75&orientation=portrait&osVersion=9.2)
-
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.

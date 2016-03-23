@@ -32,7 +32,9 @@
 @property (assign, nonatomic) CGPoint pointInWindow;
 @property (assign, nonatomic) CGPoint startOffset;
 @property (assign, nonatomic) CGPoint endOffset;
-@property (assign, nonatomic) CGFloat cellSpacing;
+
+@property (assign, nonatomic) CGFloat maximizedSpacing;
+@property (assign, nonatomic) CGFloat minimizedSpacing;
 
 //Size
 
@@ -68,7 +70,8 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     [super viewDidLoad];
     
-    self.cellSpacing = 8;
+    _maximizedSpacing = 8;
+    _minimizedSpacing = 4;
     
     self.collectionView.clipsToBounds = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -129,8 +132,8 @@ static NSString * const reuseIdentifier = @"PaperCell";
 }
 
 - (CGFloat)spacing {
-    
-    return _cellSpacing;
+    CGFloat diff = _maximizedSpacing - _minimizedSpacing;
+    return diff * self.scale;
 }
 
 - (CGFloat)margin {
@@ -147,10 +150,10 @@ static NSString * const reuseIdentifier = @"PaperCell";
     }
     
     if (difference <= 0) {
-        return _cellSpacing;
+        return self.spacing;
     }
     
-    CGFloat x = (1 - difference / distance) * _cellSpacing;
+    CGFloat x = (1 - difference / distance) * self.spacing;
     return x;
 }
 
@@ -238,7 +241,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (CGFloat)offsetAtIndex:(NSUInteger)index forScale:(CGFloat)scale {
     
-    return index * self.viewWidth * scale + index * _cellSpacing + [self marginForScale:scale];
+    return index * self.viewWidth * scale + index * self.spacing + [self marginForScale:scale];
 }
 
 - (CGFloat)maxOffsetMaximized {
@@ -449,7 +452,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
             return;
         }
         
-        CGFloat page = currentOffset / (self.currentCellSize.width + _cellSpacing);
+        CGFloat page = currentOffset / (self.currentCellSize.width + self.spacing);
         targetContentOffset->x = scrollView.contentOffset.x;
         
         
@@ -466,7 +469,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
         if (page < 0) {
             page = 0;
         }
-        CGFloat pageOffsetX = page * (self.currentCellSize.width + _cellSpacing) + self.margin;
+        CGFloat pageOffsetX = page * (self.currentCellSize.width + self.spacing) + self.margin;
         CGPoint scrollOffset = scrollView.contentOffset;
         scrollOffset.x = pageOffsetX;
         
@@ -530,7 +533,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     _startOffset = self.collectionView.contentOffset;
     _startOffset.y = self.maximizedHeight - _height;
-    _endOffset = CGPointMake((self.viewWidth + _cellSpacing) * indexPath.item, 0);
+    _endOffset = CGPointMake((self.viewWidth + self.spacing) * indexPath.item, 0);
     
     if (self.maximizedHeight == _height) {
         [self.collectionView setContentOffset:_endOffset animated:YES];
