@@ -288,22 +288,36 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     CGFloat changeY = _initialOffset - translation.y;
     
-    CGFloat endHeight = _initialHeight+ changeY * (1+_initialRatioYInCell);
+    CGFloat yRatioOffset = 1+_initialRatioYInCell;
+    CGFloat endHeight = _initialHeight+ changeY * yRatioOffset;
     
     CGPoint gestureVelocity = [panGesture velocityInView:self.view];
     
     //bounce down
+    CGFloat bounceHeight = 100;
     if (endHeight < _minimizedHeight) {
-        float difference = _minimizedHeight-endHeight;
-        float ratio = 1-(difference/_minimizedHeight);
+        CGFloat difference = _minimizedHeight-endHeight;
         
-        difference = difference*ratio;
+        if (difference > 0) {
+            CGFloat ratio = 1-(difference/_minimizedHeight);
+            if (ratio < 0) {
+                ratio = 0;
+            }
+            difference = bounceHeight * (1 - ratio*ratio);
+        }
+        
         endHeight = _minimizedHeight-difference;
     } else if (endHeight > self.maximizedHeight) {
-        float difference = endHeight-_maximizedHeight;
-        float ratio = 1-(difference/_maximizedHeight);
+        CGFloat difference = endHeight-_maximizedHeight;
         
-        difference = difference*ratio;
+        if (difference > 0) {
+            CGFloat ratio = 1-(difference/_maximizedHeight);
+            if (ratio < 0) {
+                ratio = 0;
+            }
+            difference = bounceHeight * (1 - ratio*ratio);
+        }
+        
         endHeight = _maximizedHeight+difference;
     }
     
