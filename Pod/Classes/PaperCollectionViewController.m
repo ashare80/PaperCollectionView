@@ -34,7 +34,6 @@
 @property (assign, nonatomic) CGPoint endOffset;
 
 @property (assign, nonatomic) CGFloat maximizedSpacing;
-@property (assign, nonatomic) CGFloat minimizedSpacing;
 
 //Size
 
@@ -71,7 +70,6 @@ static NSString * const reuseIdentifier = @"PaperCell";
     [super viewDidLoad];
     
     _maximizedSpacing = 8;
-    _minimizedSpacing = 4;
     
     self.collectionView.clipsToBounds = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -132,8 +130,11 @@ static NSString * const reuseIdentifier = @"PaperCell";
 }
 
 - (CGFloat)spacing {
-    CGFloat diff = _maximizedSpacing - _minimizedSpacing;
-    return diff * self.scale;
+    return [self spacingForScale:self.scale];
+}
+
+- (CGFloat)spacingForScale:(CGFloat)scale {
+    return _maximizedSpacing * scale;
 }
 
 - (CGFloat)margin {
@@ -150,10 +151,10 @@ static NSString * const reuseIdentifier = @"PaperCell";
     }
     
     if (difference <= 0) {
-        return self.spacing;
+        return [self spacingForScale:scale];
     }
     
-    CGFloat x = (1 - difference / distance) * self.spacing;
+    CGFloat x = (1 - difference / distance) * [self spacingForScale:scale];
     return x;
 }
 
@@ -241,7 +242,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
 
 - (CGFloat)offsetAtIndex:(NSUInteger)index forScale:(CGFloat)scale {
     
-    return index * self.viewWidth * scale + index * self.spacing + [self marginForScale:scale];
+    return index * self.viewWidth * scale + index * [self spacingForScale:scale] + [self marginForScale:scale];
 }
 
 - (CGFloat)maxOffsetMaximized {
@@ -392,7 +393,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     CGFloat panPositionOffset = panPositionX + contentOffset.x;
     
     
-    CGFloat cellX = _panBeganIndexPath.item*self.currentCellSize.width + _panBeganIndexPath.item*self.spacing + [self collectionView:self.collectionView layout:self.collectionViewLayout insetForSectionAtIndex:0].left;
+    CGFloat cellX = _panBeganIndexPath.item*self.currentCellSize.width + _panBeganIndexPath.item * self.spacing + [self collectionView:self.collectionView layout:self.collectionViewLayout insetForSectionAtIndex:0].left;
     CGFloat cellXPoint = cellX + _initialRatioXInCell * self.currentCellSize.width;
     
     CGFloat adjustment = cellXPoint - panPositionOffset;
@@ -547,7 +548,7 @@ static NSString * const reuseIdentifier = @"PaperCell";
     
     _startOffset = self.collectionView.contentOffset;
     _startOffset.y = self.maximizedHeight - _height;
-    _endOffset = CGPointMake((self.viewWidth + self.spacing) * indexPath.item, 0);
+    _endOffset = CGPointMake((self.viewWidth + self.maximizedSpacing) * indexPath.item, 0);
     
     if (self.maximizedHeight == _height) {
         [self.collectionView setContentOffset:_endOffset animated:YES];
