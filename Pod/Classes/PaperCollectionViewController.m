@@ -463,7 +463,8 @@ static NSString * const reuseIdentifier = @"PaperCell";
         CGFloat currentOffset = self.collectionView.contentOffset.x;
         
         BOOL bouncing = (currentOffset < 0 || currentOffset > self.maxOffsetMaximized);
-        if (bouncing) {
+        BOOL bounceTarget = targetContentOffset->x <= 0 || targetContentOffset->x >= self.maxOffsetMaximized;
+        if (bouncing && bounceTarget) {
             return;
         }
         
